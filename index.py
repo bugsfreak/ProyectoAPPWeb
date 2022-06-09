@@ -6,6 +6,14 @@ app = Flask(__name__, template_folder='templates')
 #define la ruta
 
 listaFarmacos = []
+listaUsuarios = ['root', 'admin']
+listaContrasenias = ['root123', 'admin123']
+listaOperadores = []
+
+listaOperadores.append({'usuario':listaUsuarios , 'contrasenia': listaContrasenias})
+
+
+
 
 #Ruta que mostrará el login 
 @app.route('/')
@@ -38,8 +46,14 @@ def paginaInicio():
     '''
     Función que renderiza la página de inicio.html
     '''
+    if(request.method == "POST"):
+        usuario = request.form['usuario']
+        contrasenia = request.form['contrasenia']
+        if((usuario in listaUsuarios) and (contrasenia in listaContrasenias)):
+            return render_template('inicio.html')
+        else:
+            return redirect(url_for('paginaLogin'))
 
-    return render_template('inicio.html')
 
 
 @app.route('/paginaFarmacos', methods=["POST","GET"])
@@ -95,6 +109,13 @@ def listaFarm():
     if(request.method == "POST"):
         return redirect(url_for('listar'))
 
+@app.route('/operadores', methods=["POST","GET"])
+def usuarios():
+    return render_template('listaOperadores.html', listaOperadores = listaOperadores)
+
+@app.route('/proveedores', methods=["GET"])
+def proveedores():
+    return render_template('proveedores.html')
     
 #Main, desde el que se ejecuta la aplicación
 

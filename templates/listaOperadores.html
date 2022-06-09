@@ -58,21 +58,13 @@
         <table class="table table-dark table-striped w-100">
             <thead>
               <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Farmaco</th>
-                <th scope="col">Proveedor</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Stock</th>
+                <th scope="col">Usuarios</th>
               </tr>
             </thead>
             <tbody>
-                {% for farmacos in listaFarmacos2 %}
+                {% for usuarios in listaOperadores %}
                     <tr>
-                        <td>{{farmacos.idFarmaco}}</td>
-                        <td>{{farmacos.farmaco}}</td>
-                        <td>{{farmacos.proveedor}}</td> 
-                        <td>{{farmacos.precio}}</td> 
-                        <td>{{farmacos.stock}}</td>        
+                        <td>{{usuarios.usuario}}</td>      
                     </tr>  
                 {% endfor %}
             </tbody>
