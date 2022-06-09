@@ -14,11 +14,13 @@
             let proveedor = document.forms["FarmForm"]["proveedor"].value;
             let precio = document.forms["FarmForm"]["precio"].value;
             let stock = document.forms["FarmForm"]["stock"].value;
-            if(id == ""){ alert("Algún campo está vacío"); return false;}
-            if(farmaco == ""){ alert("Algún campo está vacío"); return false;}
-            if(proveedor == ""){ alert("Algún campo está vacío"); return false;}
-            if(precio == ""){ alert("Algún campo está vacío"); return false;}
-            if(stock == ""){ alert("Algún campo está vacío"); return false;}
+            if(id == ""){ alert("Algún campo está vacío o erróneo"); return false;}
+            if(farmaco == ""){ alert("Algún campo está vacío o erróneo"); return false;}
+            if(proveedor == ""){ alert("Algún campo está vacío o erróneo"); return false;}
+            if(precio == ""){ alert("Algún campo está vacío o erróneo"); return false;}
+            if(stock == ""){ alert("Algún campo está vacío o erróneo"); return false;}
+            if(isNaN(stock)){return false;}
+            if(isNaN(precio)){return false;}
 
         }
 
