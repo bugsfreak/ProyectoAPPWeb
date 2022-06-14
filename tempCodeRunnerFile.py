@@ -12,8 +12,8 @@ app = Flask(__name__, template_folder='templates')
 listaFarmacos = []
 listaUsuarios = ['root', 'admin']
 listaContrasenias = ['root123', 'admin123']
-
-listaOperadores = {'usuario':listaUsuarios , 'contrasenia': listaContrasenias}
+listaOperadores = []
+listaOperadores.append({'usuario':listaUsuarios , 'contrasenia': listaContrasenias})
 listaIdFarmaco = []
 listaFarmaco = []
 listaProveedor = []
@@ -115,9 +115,6 @@ def vaciar():
 
 @app.route('/listar',methods=["POST","GET"])
 def listar():
-    '''
-    Lista los fármacos
-    '''
     return render_template('listaFarmacos.html', listaFarmacos2 = listaFarmacos)
 
 @app.route('/i3',methods=["POST","GET"])
@@ -127,9 +124,6 @@ def listaFarm():
 
 @app.route('/operadores', methods=["POST","GET"])
 def usuarios():
-    '''
-    Lista los operadores de la farmacia
-    '''
     return render_template('listaOperadores.html', listaOperadores = listaOperadores)
 
 @app.route('/proveedores', methods=["GET"])
@@ -139,11 +133,6 @@ def proveedores():
 
 @app.route('/exportar', methods=["POST"])
 def exportar():
-    '''
-    Exportar la lista de farmacos como archivo de excel mediante el uso de pandas
-
-    '''
-
     listaFarmas = {'idFarmaco': listaIdFarmaco, 'Farmaco': listaFarmaco, 'Proveedor': listaProveedor, 'Precio': listaPrecio, 'Stock': listaStock}
     datos = pd.DataFrame.from_dict(listaFarmas)
     salida = BytesIO()
