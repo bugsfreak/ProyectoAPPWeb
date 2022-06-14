@@ -1,4 +1,5 @@
 #Se importa Flask
+from crypt import methods
 from csv import writer
 from flask import Flask, render_template,request,redirect, send_file,url_for
 #Condigo experimental
@@ -134,7 +135,18 @@ def usuarios():
 
 @app.route('/proveedores', methods=["GET"])
 def proveedores():
+    '''
+    Renderiza la página de proveedores
+    '''
     return render_template('proveedores.html')
+
+
+@app.route('/facturacion', methods=["POST","GET"])
+def facturacion():
+    '''
+    Renderiza la página de facturacion
+    '''
+    return render_template('facturacion.html')
 
 
 @app.route('/exportar', methods=["POST"])
@@ -147,8 +159,9 @@ def exportar():
     listaFarmas = {'idFarmaco': listaIdFarmaco, 'Farmaco': listaFarmaco, 'Proveedor': listaProveedor, 'Precio': listaPrecio, 'Stock': listaStock}
     datos = pd.DataFrame.from_dict(listaFarmas)
     salida = BytesIO()
+    #El escritor se usa para establecer una escritor sobre xlsx para ello se importa también xlsxwriter
     writer = pd.ExcelWriter(salida, engine='xlsxwriter')
-
+    #Se emite los datos a excel agregandolo en una hoja llamada Hoja1
     datos.to_excel(writer, startrow=0, merge_cells=False, sheet_name="Hoja1")
     libro = writer.book
     hojaLibro = writer.sheets["Hoja1"]

@@ -19,8 +19,8 @@
             if(proveedor == ""){ alert("Algún campo está vacío o erróneo"); return false;}
             if(precio == ""){ alert("Algún campo está vacío o erróneo"); return false;}
             if(stock == ""){ alert("Algún campo está vacío o erróneo"); return false;}
-            if(isNaN(stock)){return false;}
-            if(isNaN(precio)){return false;}
+            if(isNaN(stock)){alert("Puede que el campo no sea numérico");return false;}
+            if(isNaN(precio)){alert("Puede que el campo no sea numérico");return false;}
 
         }
 
